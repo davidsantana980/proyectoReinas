@@ -1,16 +1,16 @@
 public class Reinas {
     //declara
     int size;
-    private int[][] chessboard;
+    private int[][] tablero;
 
     Reinas(int size){
         try {
             this.size = size;
-            this.chessboard = new int[this.size][this.size];
+            this.tablero = new int[this.size][this.size];
             //llenado
             for(int i = 0; i< this.size; i++){
                 for(int j = 0; j<this.size; j++) {
-                    this.chessboard[i][j] =0;
+                    this.tablero[i][j] =0;
                 }
             }
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class Reinas {
 
                 //contenido de la coordenada 
                 for(int j=0;j<this.size;j++) {
-                    System.out.print(this.chessboard[i][j]+ " ");
+                    System.out.print(this.tablero[i][j]+ " ");
                 }
 
                 //numero de fila (lado derecho)
@@ -59,25 +59,25 @@ public class Reinas {
         }
     }
 
-    private boolean isSafe(int row, int col){
+    private boolean isSafe(int fila, int columna){
         try {
             //revisa la misma fila
-            for (int i = 0; i < col; i++) {
-                if (this.chessboard[row][i] == 1) {
+            for (int i = 0; i < columna; i++) {
+                if (this.tablero[fila][i] == 1) {
                 return false;
                 }
             }
 
             //revisa el diagonal superior
-            for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
-                if (this.chessboard[i][j] == 1) {
+            for (int i = fila, j = columna; i >= 0 && j >= 0; i--, j--) {
+                if (this.tablero[i][j] == 1) {
                     return false;
                 }
             }
 
             //revisa el diagonal inferior
-            for (int i = row, j = col; i < this.size && j >= 0; i++, j--) {
-                if (this.chessboard[i][j] == 1) {
+            for (int i = fila, j = columna; i < this.size && j >= 0; i++, j--) {
+                if (this.tablero[i][j] == 1) {
                     return false;
                 }
             }
@@ -96,28 +96,28 @@ public class Reinas {
             throw new Error();
         }
     }
-    private boolean solve(int col) {
+    private boolean solve(int columna) {
         //condicion de parada - solo se alcanza cuando
         //todas las reinas han sido colocadas
-        if (col >= size) {
+        if (columna >= size) {
             return true;
         }
         
         //itera todos los espacios del tablero
-        for (int row = 0; row < size; row++) {
+        for (int fila = 0; fila < size; fila++) {
             //si no hay una reina en el espacio iterado...
-            if (isSafe(row, col)) {
+            if (isSafe(fila, columna)) {
 
                 //coloca una reina en ese espacio...
-                chessboard[row][col] = 1;
+                tablero[fila][columna] = 1;
         
                 //repite los anteriores pasos hasta la condicion de parada
-                if (solve(col + 1)) {
+                if (solve(columna + 1)) {
                     return true;
                 }
         
             //de ser otro el caso, elimina la reina y vuelve a intentarlo en la siguiente posicion
-                chessboard[row][col] = 0;
+                tablero[fila][columna] = 0;
             }
         }
         
