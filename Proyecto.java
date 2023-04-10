@@ -235,6 +235,29 @@ final class Proyecto {
         menu();
     }
 
+    private static void ejercicioReinas(){
+        try {
+            try{
+                Reinas ajedrez = new Reinas(8);
+                ajedrez.getTablero();
+
+                ajedrez.resuelve();
+                
+                System.out.print("\n\nSolucion:\n\n");
+                
+                ajedrez.getTablero();
+            }catch(Error e){
+                System.out.println("No se consiguio solucion alguna");
+            }
+          
+
+        } catch (Error e) {
+            System.out.println("\n\n" + e.getMessage());
+        }finally{
+            menu();
+        }
+    }
+
     private static void menu(){
         System.out.print("\nBienvenido de vuelta al menu principal! Escribe uno de los comandos: \'primos\', \'factorial\', \'comunes\', \'pilas\', \'desglose\', \'ecuacion\' o \'salir\' para cerrar el programa: ");
         
@@ -260,6 +283,9 @@ final class Proyecto {
                     case "ecuacion":
                         ejercicioEcuacion();
                         break;
+                    case "reinas":
+                        ejercicioReinas();
+                        break;
                     case "salir":
                         System.out.println("\nHasta pronto! \n");
                         deNuevo = false;
@@ -281,24 +307,24 @@ final class Proyecto {
         System.out.println("Bienvenido Usuario, introduzca su usuario y clave:");
         
         try {
-            for(int intentos = 0; intentos < 3; intentos++){
-                System.out.println("Usuario:");
-                usuario = lee.nextLine();
-                System.out.println("clave:");
-                clave = lee.nextLine();
+            // for(int intentos = 0; intentos < 3; intentos++){
+            //     System.out.println("Usuario:");
+            //     usuario = lee.nextLine();
+            //     System.out.println("clave:");
+            //     clave = lee.nextLine();
                 
-                if (usuario.isEmpty() || clave.isEmpty()) {
-                    System.out.println("No se han ingresado datos, por favor vuelva a intentarlo");
-                } else {
-                    if (usuario.equals("papu")  && clave.equals("mortadela")) {
+            //     if (usuario.isEmpty() || clave.isEmpty()) {
+            //         System.out.println("No se han ingresado datos, por favor vuelva a intentarlo");
+            //     } else {
+            //         if (usuario.equals("papu")  && clave.equals("mortadela")) {
                         menu();
-                        break;
-                    } else {
-                        System.out.println("Lo siento, parece ser que los datos introducidos no son correctos");
-                    }
-                    if (intentos == 2) throw new Exception("Ha superado el numero maximo de intentos permitidos");
-                }
-            } 
+                //         break;
+                //     } else {
+                //         System.out.println("Lo siento, parece ser que los datos introducidos no son correctos");
+                //     }
+                //     if (intentos == 2) throw new Exception("Ha superado el numero maximo de intentos permitidos");
+                // }
+            // } 
         }catch(Exception e){
             lee.close();
             System.out.println(e.getMessage());

@@ -1,15 +1,15 @@
 public class Reinas {
     //declara
-    int size;
+    private int longitudDelTablero;
     private int[][] tablero;
 
-    Reinas(int size){
+    Reinas(int longitudDelTablero){
         try {
-            this.size = size;
-            this.tablero = new int[this.size][this.size];
+            this.longitudDelTablero = longitudDelTablero;
+            this.tablero = new int[this.longitudDelTablero][this.longitudDelTablero];
             //llenado
-            for(int i = 0; i< this.size; i++){
-                for(int j = 0; j<this.size; j++) {
+            for(int i = 0; i< this.longitudDelTablero; i++){
+                for(int j = 0; j<this.longitudDelTablero; j++) {
                     this.tablero[i][j] =0;
                 }
             }
@@ -30,18 +30,18 @@ public class Reinas {
             };
             //columnas representadas por letras
             System.out.print("    "+ posiciones[0]);
-            for(int i=1; i<this.size; i++) {
+            for(int i=1; i<this.longitudDelTablero; i++) {
                 System.out.print(" "+ posiciones[i]);
             }
 
             //filas
-            for(int i=0; i<this.size; i++) {
+            for(int i=0; i<this.longitudDelTablero; i++) {
                 //numero de fila (va en cuenta regresiva)
-                x = size-i;
+                x = longitudDelTablero-i;
                 System.out.print("\n\n" + x + " - ");
 
                 //contenido de la coordenada 
-                for(int j=0;j<this.size;j++) {
+                for(int j=0;j<this.longitudDelTablero;j++) {
                     System.out.print(this.tablero[i][j]+ " ");
                 }
 
@@ -51,7 +51,7 @@ public class Reinas {
 
             //columnas representadas por letras
             System.out.print("\n\n    "+ posiciones[0]);
-            for(int i=1; i<this.size; i++) {
+            for(int i=1; i<this.longitudDelTablero; i++) {
                 System.out.print(" "+ posiciones[i]);
             }
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class Reinas {
         }
     }
 
-    private boolean isSafe(int fila, int columna){
+    private boolean esSeguro(int fila, int columna){
         try {
             //revisa la misma fila
             for (int i = 0; i < columna; i++) {
@@ -76,7 +76,7 @@ public class Reinas {
             }
 
             //revisa el diagonal inferior
-            for (int i = fila, j = columna; i < this.size && j >= 0; i++, j--) {
+            for (int i = fila, j = columna; i < this.longitudDelTablero && j >= 0; i++, j--) {
                 if (this.tablero[i][j] == 1) {
                     return false;
                 }
@@ -89,30 +89,30 @@ public class Reinas {
         }
     }
 
-    public void solve(){
+    public void resuelve(){
         try{
-            this.solve(0);
+            this.resuelve(0);
         }catch(Exception e){
             throw new Error();
         }
     }
-    private boolean solve(int columna) {
+    private boolean resuelve(int columna) {
         //condicion de parada - solo se alcanza cuando
         //todas las reinas han sido colocadas
-        if (columna >= size) {
+        if (columna >= longitudDelTablero) {
             return true;
         }
         
         //itera todos los espacios del tablero
-        for (int fila = 0; fila < size; fila++) {
+        for (int fila = 0; fila < longitudDelTablero; fila++) {
             //si no hay una reina en el espacio iterado...
-            if (isSafe(fila, columna)) {
+            if (esSeguro(fila, columna)) {
 
                 //coloca una reina en ese espacio...
                 tablero[fila][columna] = 1;
         
                 //repite los anteriores pasos hasta la condicion de parada
-                if (solve(columna + 1)) {
+                if (resuelve(columna + 1)) {
                     return true;
                 }
         
@@ -125,22 +125,4 @@ public class Reinas {
         return false;
     }
 
-    public static void main(String[] args){
-        try {
-            Reinas ajedrez = new Reinas(8);
-            ajedrez.getTablero();
-
-            try{
-                ajedrez.solve();
-                System.out.print("\n\nSolucion:\n\n");
-                ajedrez.getTablero();
-            }catch(Error e){
-                System.out.println("No se consiguio solucion alguna");
-            }
-          
-
-        } catch (Error e) {
-            System.out.println("\n\n" + e.getMessage());
-        }
-    }
 }
