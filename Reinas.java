@@ -3,6 +3,8 @@ public class Reinas {
     private int longitudDelTablero;
     private int[][] tablero;
 
+    Pila<int[][]> pila = new Pila<int[][]>();
+
     Reinas(int longitudDelTablero){
         try {
             this.longitudDelTablero = longitudDelTablero;
@@ -13,6 +15,9 @@ public class Reinas {
                     this.tablero[i][j] =0;
                 }
             }
+            
+            pila.push(tablero);
+            
         } catch (Exception e) {
             throw new Error("Entrada de datos incorrecta");
         }
@@ -124,5 +129,27 @@ public class Reinas {
         //si no se consigue un espacio disponible...
         return false;
     }
+
+    public static void main(String args[]){
+        try {
+            try{
+                Reinas ajedrez = new Reinas(8);
+                ajedrez.getTablero();
+
+                ajedrez.resuelve();
+                
+                System.out.print("\n\nSolucion:\n\n");
+                
+                ajedrez.getTablero();
+            }catch(Error e){
+                System.out.println("No se consiguio solucion alguna");
+            }
+          
+
+        } catch (Error e) {
+            System.out.println("\n\n" + e.getMessage());
+        }
+    }
+
 
 }

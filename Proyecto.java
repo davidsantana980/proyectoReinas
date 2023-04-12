@@ -302,8 +302,8 @@ final class Proyecto {
     }
     
     public static void main(String[] args) {
-        String usuario = "";
-        String clave = "";
+        // String usuario = "";
+        // String clave = "";
         System.out.println("Bienvenido Usuario, introduzca su usuario y clave:");
         
         try {
