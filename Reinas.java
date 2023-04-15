@@ -3,7 +3,7 @@ public class Reinas {
     private int longitudDelTablero;
     private int[][] tablero;
 
-    Pila<int[][]> pila = new Pila<int[][]>();
+    private Pila<Integer> pila = new Pila<Integer>(); // stack to store queen positions
 
     Reinas(int longitudDelTablero){
         try {
@@ -15,9 +15,7 @@ public class Reinas {
                     this.tablero[i][j] =0;
                 }
             }
-            
-            pila.push(tablero);
-            
+                        
         } catch (Exception e) {
             throw new Error("Entrada de datos incorrecta");
         }
@@ -59,6 +57,12 @@ public class Reinas {
             for(int i=1; i<this.longitudDelTablero; i++) {
                 System.out.print(" "+ posiciones[i]);
             }
+
+            //arreglar
+            System.out.print("\n\n");
+            for(int i=0; i<this.longitudDelTablero; i++) {
+                System.out.print("reina en fila " + (i+1 )+ " columna " + pila.elementAt(i) +"\n");
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -69,11 +73,11 @@ public class Reinas {
             //revisa la misma fila
             for (int i = 0; i < columna; i++) {
                 if (this.tablero[fila][i] == 1) {
-                return false;
+                    return false;
                 }
             }
 
-            //revisa el diagonal superior
+            //revisa el diiagonal superior
             for (int i = fila, j = columna; i >= 0 && j >= 0; i--, j--) {
                 if (this.tablero[i][j] == 1) {
                     return false;
@@ -115,6 +119,8 @@ public class Reinas {
 
                 //coloca una reina en ese espacio...
                 tablero[fila][columna] = 1;
+                pila.push(fila);
+
         
                 //repite los anteriores pasos hasta la condicion de parada
                 if (resuelve(columna + 1)) {
@@ -123,6 +129,7 @@ public class Reinas {
         
             //de ser otro el caso, elimina la reina y vuelve a intentarlo en la siguiente posicion
                 tablero[fila][columna] = 0;
+                pila.pop();
             }
         }
         
@@ -153,3 +160,4 @@ public class Reinas {
 
 
 }
+

@@ -124,7 +124,7 @@ final class Proyecto {
         boolean deNuevo = true;
         while(deNuevo){
             
-            System.out.print("\nEscribe uno de los comandos: \'estado\', \'llenar\', \'cantidad\', \'top\', \'elimina\', \'contenido\', \'modifica\' o \'salir\', para cerrar el menu pilas: ");
+            System.out.print("\nEscribe uno de los comandos: \'estado\', \'llenar\', \'cantidad\', \'top\', \'elimina\', \'contenido\', \'modifica\', \'busca\' o \'salir\', para cerrar el menu pilas: ");
 
             switch(lee.next()){
                 case "contenido": 
@@ -195,7 +195,7 @@ final class Proyecto {
                             index = numeroEntero();
                         }
 
-                        System.out.println("Escribe el numero por el que quieres sustituir el elemento en el indice " + index + " (el valor actual en ese indice es "+ pila.mira(index)+"): ");
+                        System.out.println("Escribe el numero por el que quieres sustituir el elemento en el indice " + index + " (el valor actual en ese indice es "+ pila.elementAt(index)+"): ");
                         int nuevoNumero = numeroEntero();    
 
                         pila.modifica(index, nuevoNumero);
@@ -223,6 +223,25 @@ final class Proyecto {
                     
                     System.out.println(mensaje);
                     break;
+                case "busca":
+                    mensaje = "\nNo hay elementos";
+
+                    if(!pila.vacia()){
+                        System.out.println("\nEscribe el indice del numero que buscas: ");
+                        int index = numeroEntero();
+
+                        while(index >= pila.cantidadDeElementos() || index < 0){
+                            System.out.println("Ese indice es invalido! Intenta de nuevo:");
+                            index = numeroEntero();
+                        }
+
+                        
+                        mensaje = "\nEl numero es: " + pila.elementAt(index);
+                    }                        
+                    
+                    System.out.println(mensaje);
+                    break;
+
                 case "salir":
 
                     System.out.println("\nHasta pronto! ");
@@ -259,7 +278,7 @@ final class Proyecto {
     }
 
     private static void menu(){
-        System.out.print("\nBienvenido de vuelta al menu principal! Escribe uno de los comandos: \'primos\', \'factorial\', \'comunes\', \'pilas\', \'desglose\', \'ecuacion\' o \'salir\' para cerrar el programa: ");
+        System.out.print("\nBienvenido de vuelta al menu principal! Escribe uno de los comandos: \'primos\', \'reinas\' \'factorial\', \'comunes\', \'pilas\', \'desglose\', \'ecuacion\' o \'salir\' para cerrar el programa: ");
         
         try{
             boolean deNuevo = true;

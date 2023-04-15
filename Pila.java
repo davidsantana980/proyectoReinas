@@ -62,7 +62,8 @@ public class Pila <Tipo>{
         nodo.info = nuevoValor;
     }   
     
-    public Tipo mira(int indice) {
+    //elementoEnIndex
+    public Tipo elementAt(int indice) {
         if (indice < 0 || indice >= this.cantidadDeElementos()) {
             throw new IndexOutOfBoundsException();
         }
@@ -74,7 +75,8 @@ public class Pila <Tipo>{
         return nodo.info;
     } 
 
-    public int indice(Tipo obj) {
+
+    public int indiceDe(Tipo obj) {
         int pos = 1;
         for (Nodo<Tipo> nodo = top; nodo != null; nodo = nodo.siguiente) {
             if (nodo.info.equals(obj)) {
