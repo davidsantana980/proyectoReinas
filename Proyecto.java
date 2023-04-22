@@ -256,21 +256,14 @@ final class Proyecto {
 
     private static void ejercicioReinas(){
         try {
-            try{
-                Reinas ajedrez = new Reinas(8);
-                ajedrez.getTablero();
+            Reinas ajedrez = new Reinas(8);
 
-                ajedrez.resuelve();
-                
-                System.out.print("\n\nSolucion:\n\n");
-                
-                ajedrez.getTablero();
-            }catch(Error e){
-                System.out.println("No se consiguio solucion alguna");
-            }
-          
-
-        } catch (Error e) {
+            ajedrez.resuelve();
+            
+            System.out.print("\n\nSolucion:\n\n");
+            
+            ajedrez.imprime();
+        } catch (Exception e) {
             System.out.println("\n\n" + e.getMessage());
         }finally{
             menu();
