@@ -122,7 +122,7 @@ final class Proyecto {
         boolean deNuevo = true;
         while(deNuevo){
             
-            String opcion = JOptionPane.showInputDialog("Escribe uno de los comandos: \'estado\', \'llenar\', \'cantidad\', \'top\', \'reinas\', \'elimina\', \'contenido\', \'modifica\' o \'salir\', para cerrar el menu pilas: ");
+            String opcion = JOptionPane.showInputDialog("Escribe uno de los comandos: \'estado\', \'llenar\', \'cantidad\', \'top\', \'elimina\', \'contenido\', \'modifica\' o \'salir\', para cerrar el menu pilas: ");
 
                 switch(opcion){
                     case "contenido": 
@@ -275,7 +275,7 @@ final class Proyecto {
         try{
           boolean deNuevo = true;
           while (deNuevo) {
-              String input = JOptionPane.showInputDialog(null, "Escribe uno de los comandos: 'primos', 'factorial', 'comunes', 'pilas', 'desglose', 'ecuacion' o 'salir' para cerrar el programa:");
+              String input = JOptionPane.showInputDialog(null, "Escribe uno de los comandos: 'primos', 'factorial', 'comunes', 'reinas', 'pilas', 'desglose', 'ecuacion' o 'salir' para cerrar el programa:");
               switch (input) {
                     case "primos":
                         ejercicioPrimos();
