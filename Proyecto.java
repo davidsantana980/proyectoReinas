@@ -119,10 +119,10 @@ final class Proyecto {
 
             String mensaje = "";
 
-            boolean deNuevo = true;
-            while(deNuevo){
-   
-                String opcion = JOptionPane.showInputDialog("Escribe uno de los comandos: \'estado\', \'llenar\', \'cantidad\', \'top\', \'elimina\', \'contenido\', \'modifica\' o \'salir\', para cerrar el menu pilas: ");
+        boolean deNuevo = true;
+        while(deNuevo){
+            
+            String opcion = JOptionPane.showInputDialog("Escribe uno de los comandos: \'estado\', \'llenar\', \'cantidad\', \'top\', \'reinas\', \'elimina\', \'contenido\', \'modifica\' o \'salir\', para cerrar el menu pilas: ");
 
                 switch(opcion){
                     case "contenido": 
@@ -194,8 +194,8 @@ final class Proyecto {
                                 index = numeroEntero();
                             }
 
-                            System.out.println("Escribe el numero por el que quieres sustituir el elemento en el indice " + index + " (el valor actual en ese indice es "+ pila.mira(index)+"): ");
-                            int nuevoNumero = numeroEntero();    
+                        System.out.println("Escribe el numero por el que quieres sustituir el elemento en el indice " + index + " (el valor actual en ese indice es "+ pila.elementAt(index)+"): ");
+                        int nuevoNumero = numeroEntero();    
 
                             pila.modifica(index, nuevoNumero);
 
@@ -220,9 +220,28 @@ final class Proyecto {
                             mensaje = "\nEl numero ha sido eliminado.";
                         }                        
                     
-                        System.out.println(mensaje);
-                        break;
-                    case "salir":
+                    System.out.println(mensaje);
+                    break;
+                case "busca":
+                    mensaje = "\nNo hay elementos";
+
+                    if(!pila.vacia()){
+                        System.out.println("\nEscribe el indice del numero que buscas: ");
+                        int index = numeroEntero();
+
+                        while(index >= pila.cantidadDeElementos() || index < 0){
+                            System.out.println("Ese indice es invalido! Intenta de nuevo:");
+                            index = numeroEntero();
+                        }
+
+                        
+                        mensaje = "\nEl numero es: " + pila.elementAt(index);
+                    }                        
+                    
+                    System.out.println(mensaje);
+                    break;
+
+                case "salir":
 
                         System.out.println("\nHasta pronto! ");
                         deNuevo = false;
@@ -232,6 +251,22 @@ final class Proyecto {
             }
 
             menu();
+    }
+
+    private static void ejercicioReinas(){
+        try {
+            Reinas ajedrez = new Reinas(8);
+
+            ajedrez.resuelve();
+            
+            System.out.print("\n\nSolucion:\n\n");
+            
+            ajedrez.imprime();
+        } catch (Exception e) {
+            System.out.println("\n\n" + e.getMessage());
+        }finally{
+            menu();
+        }
     }
 
     private static void menu(){
@@ -259,6 +294,9 @@ final class Proyecto {
                         break;
                     case "ecuacion":
                         ejercicioEcuacion();
+                        break;
+                    case "reinas":
+                        ejercicioReinas();
                         break;
                     case "salir":
                         JOptionPane.showMessageDialog(null, "Hasta pronto! ");
