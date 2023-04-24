@@ -1,5 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.proyectoreinasbeans;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author david
+ */
 public class Main {
     private static MenuPrincipal menu = new MenuPrincipal();    
     public static void main(String[] args) {
