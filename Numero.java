@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class Numero {
     private int numero; 
 
@@ -20,7 +22,8 @@ public class Numero {
             }
             return primo;
         } catch (Exception e) {
-            throw new Error(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;
         }
     }
 
@@ -36,50 +39,50 @@ public class Numero {
                 billete = numero;
 
                 if (billete > 0 && billete != 100 && billete != 50 && billete != 20 && billete != 10 && billete != 5 && billete != 2 && billete != 1) {
-                    throw new Exception("Error: un billete de tal valor no existe");
+                    JOptionPane.showMessageDialog(null, "Error: un billete de tal valor no existe");
                 }else{
-                    System.out.println("Un billete de " + billete + " se puede desglosar en:");
+                    JOptionPane.showMessageDialog(null, "Un billete de " + billete + " se puede desglosar en:");
             
                     if (billete > 50){
                         DesglosInt = billete / 50;
-                        System.out.println(DesglosInt + " billetes de 50.");
+                        JOptionPane.showMessageDialog(null, DesglosInt + " billetes de 50.");
                     }
                     
                     if (billete > 20){
                         DesglosFloat = billete / 20f;
                         if (DesglosFloat % 1 == 0){
                             aux =(int)DesglosFloat;
-                            System.out.println(aux + " billetes de 20.");
+                            JOptionPane.showMessageDialog(null, aux + " billetes de 20.");
                         } 
                     }
     
                     if (billete > 10){  
                         DesglosInt = billete / 10;
-                        System.out.println(DesglosInt + " billetes de 10.");
+                        JOptionPane.showMessageDialog(null, DesglosInt + " billetes de 10.");
                     }
                     
                     if (billete > 5){
                         DesglosInt = billete / 5;
-                        System.out.println(DesglosInt + " billetes de 5.");
+                        JOptionPane.showMessageDialog(null, DesglosInt + " billetes de 5.");
                     }
     
                     if (billete > 2){
                         DesglosFloat = billete / 2f;
                         if (DesglosFloat % 1 == 0){
                             aux =(int)DesglosFloat;
-                            System.out.println(aux + " billetes de 2.");
+                            JOptionPane.showMessageDialog(null, aux + " billetes de 2.");
                         }
                     }
     
                     if (billete > 1){
                         DesglosInt = billete / 1;
-                        System.out.println(DesglosInt + " billetes de 1.");
+                        JOptionPane.showMessageDialog(null, DesglosInt + " billetes de 1.");
                     }else{
-                        System.out.println("Un billete de 1 es lo minimo, por lo tanto no se puede desglosar.");
+                        JOptionPane.showMessageDialog(null, "Una moneda es lo minimo, por lo tanto no se puede desglosar.");
                     }
                 }
             } catch (Exception e) {
-                throw new Error(e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
         
@@ -87,13 +90,13 @@ public class Numero {
             int a = numero;
             double b = 1;
             try{
-                if(a < 0) throw new Exception("Error: El numero debe ser mayor o igual a 0.");
+                if(a < 0) JOptionPane.showMessageDialog(null, "Error: El numero debe ser mayor o igual a 0.");
                 for (int i = a; i >= 1; i--) {
                     b = b * i;
                 }
-                System.out.printf("El factorial de " + a + " es: " + b);                                                             
+                JOptionPane.showMessageDialog(null, "El factorial de " + a + " es: " + b);                                                             
             }catch(Exception e){
-                throw new Error(e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
     

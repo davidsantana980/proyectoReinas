@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class Numeros {
     private int primerTermino;
     private int segundoTermino; 
@@ -19,14 +21,28 @@ public class Numeros {
     }
 
     //función sobrecargada; al recibir 3 argumentos se ejecutará la versión que en realidad toma los dos primeros, 
-    //saca su MCD con la version de 2 parámetros y luego saca con la misma función ( de 2 parámetros ) el MCD del primer par y el tercer número.   
+    //saca su MCD con la version de 2 parámetros y luego saca con la misma función ( de 2 parámetros ) el MCD del primer par y el tercer número. 
+  
     public int mcd(){
-        return mcd(primerTermino, segundoTermino, tercerTermino);
+        try {
+          return mcd(primerTermino, segundoTermino, tercerTermino);
+        }catch (Exception e) { 
+            JOptionPane.showMessageDialog(null, e.getMessage()); 
+            return -1;
+        }
     }
+
     private int mcd(int primerTermino, int segundoTermino, int tercerTermino){
-        int primerMCD = mcd(primerTermino, segundoTermino);
-        return mcd(primerMCD, tercerTermino);
+        try{
+          int primerMCD = mcd(primerTermino, segundoTermino);
+          return mcd(primerMCD, tercerTermino);
+        }catch (Exception e) { 
+            JOptionPane.showMessageDialog(null, e.getMessage()); 
+            return -1;
+        }
+    
     }
+
     private int mcd(int dividendo, int divisor) {
         if(divisor == 0){
             return dividendo;
@@ -35,13 +51,25 @@ public class Numeros {
         return mcd(divisor, resto);
     }
 
-    public int mcm(){
-        return mcm(primerTermino, segundoTermino, tercerTermino);
+    public int mcm(){ 
+        try{
+           return mcm(primerTermino, segundoTermino, tercerTermino);
+        }catch (Exception e) { 
+           JOptionPane.showMessageDialog(null, e.getMessage()); 
+           return -1;
+        }
     }
+
     private int mcm(int primerTermino, int segundoTermino, int tercerTermino){
-        int primerMCM = mcm(primerTermino, segundoTermino);
-        return mcm(primerMCM, tercerTermino);
+        try{
+          int primerMCM = mcm(primerTermino, segundoTermino);
+          return mcm(primerMCM, tercerTermino);
+        }catch (Exception e) { 
+            JOptionPane.showMessageDialog(null, e.getMessage()); 
+            return -1;
+        }
     }
+
     private int mcm(int primerTermino, int segundoTermino){
         int minimo = (primerTermino > segundoTermino) ? primerTermino : segundoTermino;
 
@@ -54,6 +82,7 @@ public class Numeros {
     }
 
     public void ecuacionCuadratica() {
+      try{
         double a, b, c, e1, e2, aux, nr, ni;
 
         a = primerTerminoDoble;
@@ -69,17 +98,20 @@ public class Numeros {
             ni = Math.sqrt(-aux) / (2 * a);
     
             if(aux >= 0) {
-                System.out.println("Los numeros reales son: " + nr);
-                System.out.println("Solucion de la ecuacion positiva: " + e1);
-                System.out.println("Solucion de la ecuacion negativa: " + e2);
-                System.out.println("El resultado de su ecuacion es real, no hay numeros imaginarios... ");
+                JOptionPane.showMessageDialog(null, "Los numeros reales son: " + nr);
+                JOptionPane.showMessageDialog(null, "Solucion de la ecuacion positiva: " + e1);
+                JOptionPane.showMessageDialog(null, "Solucion de la ecuacion negativa: " + e2);
+                JOptionPane.showMessageDialog(null, "El resultado de su ecuacion es real, no hay numeros imaginarios... ");
             } else {
-                System.out.println("Los numeros reales son: " + nr);
-                System.out.println("Los numeros imaginarios son: " + ni);
-                System.out.println("La raiz es negativa, no hay resultado");
+                JOptionPane.showMessageDialog(null, "Los numeros reales son: " + nr);
+                JOptionPane.showMessageDialog(null, "Los numeros imaginarios son: " + ni);
+                JOptionPane.showMessageDialog(null, "La raiz es negativa, no hay resultado");
             }	  
         }else{
-            System.out.println("\nERROR: El termino \'a\' no puede ser 0 en una variable de segundo grado.");
-        }                                   
+            JOptionPane.showMessageDialog(null, "\nERROR: El termino \'a\' no puede ser 0 en una variable de segundo grado.");
+        }   
+      }catch(Error e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+      }                               
     }      
 }
