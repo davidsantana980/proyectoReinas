@@ -76,7 +76,7 @@ public class Numero {
     
                     if (billete > 1){
                         DesglosInt = billete / 1;
-                        JOptionPane.showMessageDialog(null, DesglosInt + " billetes de 1.");
+                        JOptionPane.showMessageDialog(null, DesglosInt + " monedas de 1.");
                     }else{
                         JOptionPane.showMessageDialog(null, "Una moneda es lo minimo, por lo tanto no se puede desglosar.");
                     }
